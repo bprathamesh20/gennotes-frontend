@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { StackProvider, StackTheme } from "@stackframe/stack";
+import { stackServerApp } from "../stack";
 import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from '@/components/navbar'; // Import the Navbar
 import './globals.css'
@@ -41,7 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full"> {/* Add h-full */}
-      <body className="h-full flex flex-col"> {/* Add h-full and flex layout */}
+      <body className="h-full flex flex-col"><StackProvider app={stackServerApp}><StackTheme> {/* Add h-full and flex layout */}
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
@@ -54,7 +56,7 @@ export default function RootLayout({
              {children}
           </div>
         </ThemeProvider>
-      </body>
+      </StackTheme></StackProvider></body>
     </html>
   )
 }
