@@ -22,8 +22,7 @@ export default function RootLayout({
           defaultTheme="light"
           enableSystem={false} // Force dark theme regardless of system preference
           disableTransitionOnChange
-        >
-          <Navbar /> {/* Add the Navbar here */}
+        >{/* Add the Navbar here */}
           {children}
         </ThemeProvider>
       </body>
