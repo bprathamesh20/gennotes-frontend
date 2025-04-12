@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: 'Ai powered notes generator that generates detailed researched notes with image and daigrams in one click',
   keywords: ['ai notes', 'note generator', 'research notes', 'diagrams', 'images', 'automated notes'],
   icons: {
-    icon: '/favicon.ico', // Link to your favicon in the public folder
+    icon: '/logo.png' // Link to your favicon in the public folder
   },
   openGraph: {
     title: 'Gennnotes',

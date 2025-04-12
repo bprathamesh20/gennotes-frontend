@@ -20,8 +20,8 @@ const Navbar = () => {
   return (
     <nav className="bg-white border-gray-200">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <Image src="/logo.png" width={32} height={32} alt="gennotes Logo" />
+        <Link href="/" className="flex items-center space-x-1 rtl:space-x-reverse">
+          <Image src="/logo.png" width={48} height={48} alt="gennotes Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-gray-900 [letter-spacing:-0.06em]">gennotes</span>
         </Link>
         <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
