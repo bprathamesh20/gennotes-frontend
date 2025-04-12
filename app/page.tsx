@@ -15,6 +15,15 @@ export default function Home() {
   const [query, setQuery] = useState<string>("")
   const router = useRouter() // Initialize useRouter
 
+  // Define suggestions
+  const suggestions = [
+    "Explain the concept of photosynthesis",
+    "Summarize the plot of Hamlet",
+    "What are the main causes of World War I?",
+    "Create study notes for the Krebs cycle",
+    "Compare and contrast mitosis and meiosis",
+  ];
+
   const handleSubmit = () => {
     if (!query.trim()) return // Prevent submission if empty
 
@@ -23,16 +32,16 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen p-3 text-gray-900">
+    <main className="flex flex-col justify-center items-center h-full text-gray-900"> {/* Center content, take full container height */}
       {/* Center content vertically and horizontally */}
-      <div className="flex flex-col justify-center items-center min-h-screen">
+      <div className="flex flex-col items-center w-full max-w-4xl px-4"> {/* Removed min-h-screen, added padding and max-width */}
         {/* Title and description */}
         <div>
-          <h1 className="text-3xl font-semibold mb-3 text-center">What can I help you learn?</h1>
+          <h1 className="text-3xl font-semibold mb-3 text-center [letter-spacing:-0.06em]">What can I help you learn?</h1>
           <p className="text-sm text-gray-600 mb-3 text-center">Ask me about your syllabus topics or give me questions to solve</p>
         </div>
         {/* Input area */}
-        <div className="w-full max-w-2xl">
+        <div className="w-full max-w-2xl ">
           {/* Replace QueryInput with PromptInput structure */}
           <PromptInput
             value={query}
@@ -58,6 +67,19 @@ export default function Home() {
               </PromptInputAction>
             </PromptInputActions>
           </PromptInput>
+
+          {/* Suggestions Section */}
+          <div className="mt-4 flex flex-wrap justify-center gap-2 px-4">
+            {suggestions.map((suggestion, index) => (
+              <button
+                key={index}
+                onClick={() => setQuery(suggestion)}
+                className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300"
+              >
+                {suggestion}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Removed the HtmlPreview section */}
