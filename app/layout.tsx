@@ -15,15 +15,19 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className="h-full"> {/* Add h-full */}
+      <body className="h-full flex flex-col"> {/* Add h-full and flex layout */}
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
           enableSystem={false} // Force dark theme regardless of system preference
           disableTransitionOnChange
-        >{/* Add the Navbar here */}
-          {children}
+        >
+          <Navbar />
+          {/* Make children container grow */}
+          <div className="flex-1 overflow-auto">
+             {children}
+          </div>
         </ThemeProvider>
       </body>
     </html>
