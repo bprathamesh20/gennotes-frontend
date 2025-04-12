@@ -1,7 +1,8 @@
-import type { Metadata } from 'next'
+import type { Metadata } from 'next';
+import { Suspense } from 'react'; // Import Suspense
 import { StackProvider, StackTheme } from "@stackframe/stack";
 import { stackServerApp } from "../stack";
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from '@/components/navbar'; // Import the Navbar
 import './globals.css'
 
@@ -50,7 +51,10 @@ export default function RootLayout({
           enableSystem={false} // Force dark theme regardless of system preference
           disableTransitionOnChange
         >
-          <Navbar />
+          {/* Wrap Navbar in Suspense to handle potential suspension from useUser */}
+          <Suspense fallback={<div className="h-[68px]"></div>}> {/* Basic fallback with approx height */}
+            <Navbar />
+          </Suspense>
           {/* Make children container grow */}
           <div className="flex-1 overflow-auto">
              {children}
