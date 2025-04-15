@@ -3,7 +3,7 @@
 import { useState, useRef } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Maximize2, X, Download } from "lucide-react"
+import { Maximize2, X, Download, Printer } from "lucide-react" // Import Printer icon
 import { Dialog, DialogContent } from "@/components/ui/dialog"
 // Dynamically import html2pdf.js later
 
@@ -59,6 +59,26 @@ export default function HtmlPreview({ html, className }: HtmlPreviewProps) { // 
               >
                 <Download className="h-4 w-4" />
               </Button>
+              {/* Add Print Button */}
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-8 w-8 p-0"
+                onClick={() => {
+                  const iframeWindow = previewRef.current?.contentWindow;
+                  if (iframeWindow) {
+                    iframeWindow.focus(); // Focus might be needed for print in some browsers
+                    iframeWindow.print();
+                  } else {
+                    console.error("Could not get iframe content window for printing.");
+                    // Consider showing a user-friendly message here
+                    alert("Error printing: Could not access preview content.");
+                  }
+                }}
+                aria-label="Print preview"
+              >
+                <Printer className="h-4 w-4" />
+              </Button>
               <Button
                 variant="ghost"
                 size="sm"
@@ -79,7 +99,7 @@ export default function HtmlPreview({ html, className }: HtmlPreviewProps) { // 
             srcDoc={html}
             className="preview-iframe w-full h-full border-0 bg-white" // Changed to h-full
             title="HTML Preview"
-            sandbox="allow-scripts allow-same-origin" // Basic sandbox for security
+            sandbox="allow-scripts allow-same-origin allow-modals" // Allow modals for printing
           />
         </CardContent>
       </Card>
@@ -111,7 +131,7 @@ export default function HtmlPreview({ html, className }: HtmlPreviewProps) { // 
               srcDoc={html}
               className="w-full h-full border-0 bg-white flex-1"
               title="HTML Fullscreen Preview"
-              sandbox="allow-scripts allow-same-origin"
+              sandbox="allow-scripts allow-same-origin allow-modals" // Allow modals for printing
             />
           </div>
         </DialogContent>
